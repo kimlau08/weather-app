@@ -16,13 +16,16 @@ import config from './config/config';
 
 import sampleForecast from './components/sampleForecast'
 
+let test=true;
+
+
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
 
-      dataforToday: [],
+      fiveDayForecastData: [],
 
       axiosItems: []
     }
@@ -35,7 +38,7 @@ export default class App extends Component {
   axiosGetWeather () {
 
     let apiKey=config.OPEN_WEATHER_MAP_KEY;
-    axios.get("http://api.openweathermap.org/data/2.5/weather?q=Dallas,us&APPID="+apiKey)
+    axios.get("http://api.openweathermap.org/data/2.5/forecast?q=Dallas,us&APPID="+apiKey)
     .then (response=> {
       const responseData=response.data.results;
       console.log('Weather data: ', responseData);
@@ -61,9 +64,20 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.axiosGetWeather();
-    this.axiosGet();
-}
+
+
+    /***********************Update this before submitting**********************/
+    if (test) {
+      this.setState({ fiveDayForecastData: sampleForecast });
+
+    } else {
+      
+      this.axiosGetWeather();
+      // this.axiosGet();
+
+    }
+
+  }
 
   render() {
     return (
