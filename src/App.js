@@ -12,21 +12,45 @@ import Wednesday from './components/Wednesday';
 import Thursday from './components/Thursday';
 import Friday from './components/Friday';
 
+import config from './config/config';
+
+import sampleForecast from './components/sampleForecast'
+
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+
+      dataforToday: [],
+
       axiosItems: []
     }
 
     this.axiosGet=this.axiosGet.bind(this);
+    this.axiosGetWeather=this.axiosGetWeather.bind(this);
+  }
+
+  
+  axiosGetWeather () {
+
+    let apiKey=config.OPEN_WEATHER_MAP_KEY;
+    axios.get("http://api.openweathermap.org/data/2.5/weather?q=Dallas,us&APPID="+apiKey)
+    .then (response=> {
+      const responseData=response.data.results;
+      console.log('Weather data: ', responseData);
+
+      this.setState({dataforToday: responseData})
+    })
+    .catch(error=>{
+      console.log('Error occurred', error)
+    })
   }
 
   axiosGet() {
     axios.get("https://api.spoonacular.com/recipes/search?query=cheese&number=4&apiKey=27a02bbb5b48401f96bfda6a7d3e2545")
     .then (response=> {
-      const responseData=response.data.results;
+      const responseData=response.data;
       console.log('Weather data: ', responseData);
 
       this.setState({axiosItems: responseData})
@@ -37,6 +61,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.axiosGetWeather();
     this.axiosGet();
 }
 
@@ -67,6 +92,10 @@ export default class App extends Component {
             </Switch>
         </Router>
 
+        <p>
+          Weather Forecast Today:
+
+        </p>
 
         <ul>
             { this.state.axiosItems.map( (data, id)=><li key={id}> {data.title} </li> )}
