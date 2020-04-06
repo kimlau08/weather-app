@@ -269,6 +269,7 @@ export default class App extends Component {
                     <div className="DailyCard">
                       <Link to={{
                             pathname: "/Day1",
+                            weekday: this.state.day1Forecast.weekday,
                             hourlyForecast: this.state.day1Forecast.hourlyForecast }}>
                         <img className="forecastImg" src={this.state.day1Img} />
                       </Link>
@@ -284,6 +285,7 @@ export default class App extends Component {
                     <div className="DailyCard">
                       <Link to={{
                             pathname: "/Day2",
+                            weekday: this.state.day2Forecast.weekday,
                             hourlyForecast: this.state.day2Forecast.hourlyForecast }}>
                         <img className="forecastImg" src={this.state.day2Img} />
                       </Link>
@@ -299,6 +301,7 @@ export default class App extends Component {
                     <div className="DailyCard">
                       <Link to={{
                             pathname: "/Day3",
+                            weekday: this.state.day3Forecast.weekday,
                             hourlyForecast: this.state.day3Forecast.hourlyForecast }}>
                         <img className="forecastImg" src={this.state.day3Img} />
                       </Link>
@@ -314,6 +317,7 @@ export default class App extends Component {
                     <div className="DailyCard">
                       <Link to={{
                             pathname: "/Day4",
+                            weekday: this.state.day4Forecast.weekday,
                             hourlyForecast: this.state.day4Forecast.hourlyForecast }}>
                         <img className="forecastImg" src={this.state.day4Img} />
                       </Link>
@@ -331,6 +335,7 @@ export default class App extends Component {
                           <div className="DailyCard">
                             <Link to={{
                                   pathname: "/Day5",
+                                  weekday: this.state.day5Forecast.weekday,
                                   hourlyForecast: this.state.day5Forecast.hourlyForecast }}>
                               <img className="forecastImg" src={this.state.day5Img} />
                             </Link>
