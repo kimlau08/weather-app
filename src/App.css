@@ -2,14 +2,22 @@ li {
     display: inline;
 }
 
-.forecastImg {
-    width: 100px;
+.DailyCard {
+    width: 120px;
     height: auto;
-    margin-right: 10px;
+    text-align: center;
+border: solid red;
 }
 
-.dayOfWeekTxt {
-    font-size: 14px;
-    font-weight: bold;
-    
-}
+    .forecastImg {
+        width: 100px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .dailyInfoTxt {
+        width: 100%;
+        font-size: 12px;
+        font-weight: bold;
+border: solid blue;
+    }

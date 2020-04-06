@@ -249,34 +249,44 @@ export default class App extends Component {
 
         <Router>
             <nav>
-              <ul>
-                <li>  <Link to={{
-                            pathname: "/Day0",
-                            forecast: this.state.day0Forecast.forecast,
-                            hiTemp: this.state.day0Forecast.hiTemp,
-                            loTemp: this.state.day0Forecast.loTemp,
+              <ul className="ForecastList">
+                <li> 
+                    <div className="DailyCard">
+                      <Link to={{
                             hourlyForecast: this.state.day0Forecast.hourlyForecast
                       }}>
                         <img className="forecastImg" src={this.state.day1Img} />
                       </Link>
+                      
+                      <div className="ForecastBox">
+                          <p className="dailyInfoTxt">{this.state.day0Forecast.weekday}: {this.state.day0Forecast.forecast} </p>
+                          <p className="dailyInfoTxt"> Hi: {this.state.day0Forecast.hiTemp} </p>
+                          <p className="dailyInfoTxt"> Lo: {this.state.day0Forecast.loTemp} </p>
+                      </div>
+                    </div>
                 </li>
-                <li>  <Link to="/Day1">
+                <li>  
+                      <Link to="/Day1">
                         <img className="forecastImg" src={this.state.day1Img} />
                       </Link> 
                 </li>
-                <li>  <Link to="/Day2">
+                <li>  
+                      <Link to="/Day2">
                         <img className="forecastImg" src={this.state.day2Img} />
                       </Link> 
                 </li>
-                <li>  <Link to="/Day3">
+                <li>  
+                      <Link to="/Day3">
                         <img className="forecastImg" src={this.state.day3Img} />
                       </Link> 
                 </li>
-                <li>  <Link to="/Day4">
+                <li>  
+                      <Link to="/Day4">
                         <img className="forecastImg" src={this.state.day4Img} />
                       </Link> 
                 </li>
-                <li>  <Link to="/Day5">
+                <li>  
+                      <Link to="/Day5">
                         <img className="forecastImg" src={this.state.day5Img} />
                       </Link> 
                 </li>
