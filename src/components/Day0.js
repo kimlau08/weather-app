@@ -27,7 +27,7 @@ export default function Day0(props) {
         <div className="hourlyDataBox"> 
             <p>Hourly forcast for {weekday} </p>
             <ul>
-                { forecastList.map( (forecast, id)=><li key={id}> Hour: {forecast.hr} Hi: {forecast.hiTemp} Lo: {forecast.loTemp} <br /></li>  )}
+                { forecastList.map( (forecast, id)=><li key={id}> Time: {forecast.hr} Hi: {forecast.hiTemp} Lo: {forecast.loTemp} <br /></li>  )}
             </ul>
         </div>
     )
