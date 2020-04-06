@@ -2,11 +2,7 @@ import React, { Component } from 'react'
 import './App.css';
 
 import axios from 'axios';
-
-import { useState, useEffect } from "react";
-import { render } from "react-dom";
-
-import { Switch, Route, Link, useLocation, useParams, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
 
 
 import Day0 from './components/Day0';
