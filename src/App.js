@@ -96,8 +96,6 @@ export default class App extends Component {
     let currentDayIdx=0;
     let forecastByDays=[];
     let dailyForecast=[]; //array of objects containing day name, main forecast, temp min and temp max
-    let tempMax=0;
-    let tempMin=1000;
     for (let i=0; i<forecastData.length; i++) {
 
       let dt=forecastData[i].dt_txt;
@@ -139,6 +137,8 @@ export default class App extends Component {
       let img=this.getWeatherImgPath(mainForecast);
 
       let dayOfWk=this.getDayOfWeek(dt);
+      let tempMax=0;
+      let tempMin=1000;  
 
       //for each hourly forecast on that day
       for (let j=0; j<forecastByDays[i].length ; j++) {
