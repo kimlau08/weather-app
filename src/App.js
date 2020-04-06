@@ -10,13 +10,16 @@ import Day2 from './components/Day2';
 import Day3 from './components/Day3';
 import Day4 from './components/Day4';
 import Day5 from './components/Day5';
-import Day6 from './components/Day6';
+//import Day6 from './components/Day6';
+
+import cloudyImg from './assets/cloudy.PNG';
+import rainyImg from './assets/rainy.PNG';
+import sunnyImg from './assets/sunny.PNG';
+import snowyImg from './assets/snowy.PNG';
 
 import config from './config/config';
 
 //import sample5DayForecast, {sampleNowCast} from './components/sampleForecast';
-
-let test=false;
 
 export default class App extends Component {
   constructor(props) {
@@ -33,7 +36,15 @@ export default class App extends Component {
       day3Forecast: {},
       day4Forecast: {},
       day5Forecast: {},
-      day6Forecast: {},
+   //   day6Forecast: {},
+
+      day0Img: "",
+      day1Img: "",
+      day2Img: "",
+      day3Img: "",
+      day4Img: "",
+      day5Img: "",
+
 
       axiosItems: []
     }
@@ -44,19 +55,31 @@ export default class App extends Component {
     this.sortForecastByDate=this.sortForecastByDate.bind(this);
     this.getDateFromISODate=this.getDateFromISODate.bind(this);
     this.getDayOfWeek=this.getDayOfWeek.bind(this);
+    this.getWeatherImgPath=this.getWeatherImgPath.bind(this);
   }
 
   getDateFromISODate(ISODateTime) {
     let dateTimeArray=ISODateTime.split('T');
     return dateTimeArray[0];
   }
-
   getDayOfWeek(date) {
     let wkDayNames=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     let dayNum=new Date(date).getDay(); 
     let dayOfWk=isNaN(dayNum) ? "" : wkDayNames[dayNum];
     return dayOfWk;
+  }
+  getWeatherImgPath(mainForecast) {
+    let mf=mainForecast.toLowerCase();
+    if (mf.match("cloud")) {
+      return cloudyImg;
+    } else if (mf.match("rain")) {
+      return rainyImg;
+    } else if (mf.match("sun")) {
+      return sunnyImg;
+    } else if (mf.match("snow")) {
+      return snowyImg;
+    }
   }
 
   sortForecastByDate() {    
@@ -74,14 +97,8 @@ export default class App extends Component {
     let tempMin=1000;
     for (let i=0; i<forecastData.length; i++) {
 
-
       let dt=forecastData[i].dt_txt;
       let day=dt.split(' ')[0];  //get the day portion of day-time
-
-      let dayOfWk=this.getDayOfWeek(dt);
-      let mainForecast=forecastData[i].weather[0].main;
-      tempMax = (tempMax < forecastData[i].main.temp_max) ? forecastData[i].main.temp_max : tempMax;
-      tempMin = (tempMin > forecastData[i].main.temp_max) ? forecastData[i].main.temp_min : tempMin;
 
       if (currentDay === "") {
         //start the first day
@@ -100,25 +117,62 @@ export default class App extends Component {
 
       } else {
 
-        //a new day
+        //move on to the new day
         currentDayIdx++;
         forecastByDays[currentDayIdx]= [ forecastData[i] ];  //start a new day
         currentDay=day;
 
       };
+    }
 
-      
+    //extract the needed info for each day from forecastByDays 
+    //for each forecast day, ...
+    for (let i=0; i<forecastByDays.length; i++) {
+
+      let dt=forecastByDays[i][0].dt_txt;
+      let day=dt.split(' ')[0];  //get the day portion of day-time
+
+      let mainForecast=forecastByDays[i][0].weather[0].main;
+      let img=this.getWeatherImgPath(mainForecast);
+
+      let dayOfWk=this.getDayOfWeek(dt);
+
+      //for each hourly forecast on that day
+      for (let j=0; j<forecastByDays[i].length ; j++) {
+        tempMax = (tempMax < forecastByDays[i][j].main.temp_max) ? forecastByDays[i][j].main.temp_max : tempMax;
+        tempMin = (tempMin > forecastByDays[i][j].main.temp_max) ? forecastByDays[i][j].main.temp_min : tempMin;
+      }
+
+      //record the current day forecast before moving on to the next day
       let currentDayForecast={
         weekday: dayOfWk,
         forecast: mainForecast,
         hiTemp: tempMax,
         loTemp: tempMin,
 
-        hourlyForecast: forecastByDays[currentDayIdx]
+        weatherImg: img,
+
+        hourlyForecast: forecastByDays[i]
       }
       dailyForecast.push(currentDayForecast);
 
     }
+
+    this.setState({day0Img: dailyForecast[0].weatherImg});
+    this.setState({day1Img: dailyForecast[1].weatherImg});
+    this.setState({day2Img: dailyForecast[2].weatherImg});
+    this.setState({day3Img: dailyForecast[3].weatherImg});
+    this.setState({day4Img: dailyForecast[4].weatherImg});
+    this.setState({day5Img: dailyForecast[5].weatherImg});
+
+    this.setState({day0Forecast: dailyForecast[0]});
+    this.setState({day1Forecast: dailyForecast[1]});
+    this.setState({day2Forecast: dailyForecast[2]});
+    this.setState({day3Forecast: dailyForecast[3]});
+    this.setState({day4Forecast: dailyForecast[4]});
+    this.setState({day5Forecast: dailyForecast[5]});
+//    this.setState({day6Forecast: dailyForecast[6]});
+
 
     this.setState( { hourlyDataByDays: forecastByDays });
   }
@@ -169,13 +223,16 @@ export default class App extends Component {
         <Router>
             <nav>
               <ul>
-                <li>  <Link to="/Day0">{linkName}</Link> </li>
+                <li>  <Link to={{
+                            pathname: "/Day0",
+                            forecast: this.state.day0Forecast
+                      }}>{linkName}</Link> </li>
                 <li>  <Link to="/Day1">Day1</Link> </li>
                 <li>  <Link to="/Day2">Day2</Link> </li>
                 <li>  <Link to="/Day3">Day3</Link> </li>
                 <li>  <Link to="/Day4">Day4</Link> </li>
                 <li>  <Link to="/Day5">Day5</Link> </li>
-                <li>  <Link to="/Day6">Day6</Link> </li>
+  {/* <li>  <Link to="/Day6">Day6</Link> </li> */}
               </ul>
             </nav>
             <Switch>
@@ -185,7 +242,7 @@ export default class App extends Component {
               <Route exact path="/Day3" component={Day3} />
               <Route exact path="/Day4" component={Day4} />
               <Route exact path="/Day5" component={Day5} />
-              <Route exact path="/Day6" component={Day6} />
+  {/* <Route exact path="/Day6" component={Day6} /> */}
             </Switch>
         </Router>
 
