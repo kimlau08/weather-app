@@ -1,9 +1,11 @@
 import React from 'react';
+import '../App.css';
 
 export default function Day0(props) {
+    let mainForecast=props.forecast;
     return (
-        <React.Fragment>
-            <h1 style={{color:'red'}}>Monday Forecast</h1>
-        </React.Fragment>
+        <div>
+            <p className="dayOfWeekTxt">Monday: {mainForecast} </p>
+        </div>
     )
 }

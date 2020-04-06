@@ -1,0 +1,15 @@
+li {
+    display: inline;
+}
+
+.forecastImg {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.dayOfWeekTxt {
+    font-size: 14px;
+    font-weight: bold;
+    
+}

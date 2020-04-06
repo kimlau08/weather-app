@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import './App.css';
 
-import {Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
+
+import { useState, useEffect } from "react";
+import { render } from "react-dom";
+
+import { Switch, Route, Link, useLocation, useParams, BrowserRouter as Router } from "react-router-dom";
+
 
 import Day0 from './components/Day0';
 import Day1 from './components/Day1';
@@ -10,7 +15,6 @@ import Day2 from './components/Day2';
 import Day3 from './components/Day3';
 import Day4 from './components/Day4';
 import Day5 from './components/Day5';
-//import Day6 from './components/Day6';
 
 import cloudyImg from './assets/cloudy.PNG';
 import rainyImg from './assets/rainy.PNG';
@@ -36,7 +40,6 @@ export default class App extends Component {
       day3Forecast: {},
       day4Forecast: {},
       day5Forecast: {},
-   //   day6Forecast: {},
 
       day0Img: "",
       day1Img: "",
@@ -158,20 +161,45 @@ export default class App extends Component {
 
     }
 
-    this.setState({day0Img: dailyForecast[0].weatherImg});
-    this.setState({day1Img: dailyForecast[1].weatherImg});
-    this.setState({day2Img: dailyForecast[2].weatherImg});
-    this.setState({day3Img: dailyForecast[3].weatherImg});
-    this.setState({day4Img: dailyForecast[4].weatherImg});
-    this.setState({day5Img: dailyForecast[5].weatherImg});
 
-    this.setState({day0Forecast: dailyForecast[0]});
-    this.setState({day1Forecast: dailyForecast[1]});
-    this.setState({day2Forecast: dailyForecast[2]});
-    this.setState({day3Forecast: dailyForecast[3]});
-    this.setState({day4Forecast: dailyForecast[4]});
-    this.setState({day5Forecast: dailyForecast[5]});
-//    this.setState({day6Forecast: dailyForecast[6]});
+    if (dailyForecast[0] != undefined) {
+      this.setState({day0Img: dailyForecast[0].weatherImg});
+    }
+    if (dailyForecast[1] != undefined) {
+      this.setState({day1Img: dailyForecast[1].weatherImg});
+    }
+    if (dailyForecast[2] != undefined) {
+      this.setState({day2Img: dailyForecast[2].weatherImg});
+    }
+    if (dailyForecast[3] != undefined) {
+      this.setState({day3Img: dailyForecast[3].weatherImg});
+    }
+    if (dailyForecast[4] != undefined) {
+      this.setState({day4Img: dailyForecast[4].weatherImg});
+    }
+    if (dailyForecast[5] != undefined) {
+      this.setState({day5Img: dailyForecast[5].weatherImg});
+    }
+
+
+    if (dailyForecast[0] != undefined) {
+      this.setState({day0Forecast: dailyForecast[0]});
+    }
+    if (dailyForecast[1] != undefined) {
+      this.setState({day1Forecast: dailyForecast[1]});
+    }
+    if (dailyForecast[2] != undefined) {
+      this.setState({day2Forecast: dailyForecast[2]});
+    }
+    if (dailyForecast[3] != undefined) {
+      this.setState({day3Forecast: dailyForecast[3]});
+    }
+    if (dailyForecast[4] != undefined) {
+      this.setState({day4Forecast: dailyForecast[4]});
+    }
+    if (dailyForecast[5] != undefined) {
+      this.setState({day5Forecast: dailyForecast[5]});
+    }
 
 
     this.setState( { hourlyDataByDays: forecastByDays });
@@ -216,7 +244,6 @@ export default class App extends Component {
 
   render() {
 
-    let linkName="Today";
     return (
       <div className="App">
 
@@ -225,14 +252,38 @@ export default class App extends Component {
               <ul>
                 <li>  <Link to={{
                             pathname: "/Day0",
-                            forecast: this.state.day0Forecast
-                      }}>{linkName}</Link> </li>
-                <li>  <Link to="/Day1">Day1</Link> </li>
-                <li>  <Link to="/Day2">Day2</Link> </li>
+                            forecast: this.state.day0Forecast.forecast,
+                            hiTemp: this.state.day0Forecast.hiTemp,
+                            loTemp: this.state.day0Forecast.loTemp,
+                            hourlyForecast: this.state.day0Forecast.hourlyForecast
+                      }}>
+                        <img className="forecastImg" src={this.state.day1Img} />
+                      </Link>
+                </li>
+                <li>  <Link to="/Day1">
+                        <img className="forecastImg" src={this.state.day1Img} />
+                      </Link> 
+                </li>
+                <li>  <Link to="/Day2">
+                        <img className="forecastImg" src={this.state.day2Img} />
+                      </Link> 
+                </li>
+                <li>  <Link to="/Day3">
+                        <img className="forecastImg" src={this.state.day3Img} />
+                      </Link> 
+                </li>
+                <li>  <Link to="/Day4">
+                        <img className="forecastImg" src={this.state.day4Img} />
+                      </Link> 
+                </li>
+                <li>  <Link to="/Day5">
+                        <img className="forecastImg" src={this.state.day5Img} />
+                      </Link> 
+                </li>
+                {/* <li>  <Link to="/Day2">Day2</Link> </li>
                 <li>  <Link to="/Day3">Day3</Link> </li>
                 <li>  <Link to="/Day4">Day4</Link> </li>
-                <li>  <Link to="/Day5">Day5</Link> </li>
-  {/* <li>  <Link to="/Day6">Day6</Link> </li> */}
+                <li>  <Link to="/Day5">Day5</Link> </li> */}
               </ul>
             </nav>
             <Switch>
@@ -242,7 +293,6 @@ export default class App extends Component {
               <Route exact path="/Day3" component={Day3} />
               <Route exact path="/Day4" component={Day4} />
               <Route exact path="/Day5" component={Day5} />
-  {/* <Route exact path="/Day6" component={Day6} /> */}
             </Switch>
         </Router>
 
