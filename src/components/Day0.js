@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Sunday () {
+export default function Day0 () {
     return (
         <React.Fragment>
-            <h1 style={{color:'blue'}}>Sunday Forecast</h1>
+            <h1 style={{color:'red'}}>Monday Forecast</h1>
         </React.Fragment>
     )
 }
