@@ -2,6 +2,11 @@ li {
     display: inline;
 }
 
+.ForecastList {
+    display: flex;
+    flex-direction: row;
+}
+
 .DailyCard {
     width: 120px;
     height: auto;
