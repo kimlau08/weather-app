@@ -54,20 +54,13 @@ export default class App extends Component {
 
     //Get ISO date for next 7 days
     let today=this.getDateFromISODate(new Date().toISOString());  //currrent date-time, delimited by 'T'
-    let numberOfForecasetDays=7;
-    let dt_today=new Date(today);
-// let days=[];
-// for (let i=0; i<numberOfForecasetDays; i++) {
-//   let dt_nextDay=dt_today+1;
-//   let nextDate=this.getDateFromISODate(dt_nextDay.toISOString());
-//   days.push(nextDate);
-// }
     
     //Add hourly data to each forecast day
     let forecastData=this.state.fiveDayForecastData.list; //only get the array of forecast data
     let currentDay="";
     let currentDayIdx=0;
-    let forecastByDays=[]
+    let forecastByDays=[];
+    let dailyForecast=[]; //array of objects containing day name, main forecast, temp min and temp max
     for (let i=0; i<forecastData.length; i++) {
 
       let dt=forecastData[i].dt_txt;
@@ -149,13 +142,15 @@ export default class App extends Component {
   }
 
   render() {
+
+    let linkName="Today";
     return (
       <div className="App">
 
         <Router>
             <nav>
               <ul>
-                <li>  <Link to="/Day0">Day0</Link> </li>
+                <li>  <Link to="/Day0">{linkName}</Link> </li>
                 <li>  <Link to="/Day1">Day1</Link> </li>
                 <li>  <Link to="/Day2">Day2</Link> </li>
                 <li>  <Link to="/Day3">Day3</Link> </li>
