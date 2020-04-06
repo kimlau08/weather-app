@@ -201,14 +201,14 @@ export default class App extends Component {
       this.setState({day5Forecast: dailyForecast[5]});
     }
 
-
+    this.setState( {city: this.state.fiveDayForecastData.city.name }) ;
     this.setState( { hourlyDataByDays: forecastByDays });
   }
 
 
   axiosGetWeatherData () {
     let apiKey=config.OPEN_WEATHER_MAP_KEY;
-    axios.get("http://api.openweathermap.org/data/2.5/forecast?q=Dallas,us&APPID="+apiKey)
+    axios.get("http://api.openweathermap.org/data/2.5/forecast?q=Dallas,us&units=imperial&APPID="+apiKey)
     .then (response=> {
       const responseData=response.data;
       console.log('Weather data: ', responseData);
@@ -246,7 +246,7 @@ export default class App extends Component {
 
     return (
       <div className="App">
-
+        <p className="cityNameTxt"> City: {this.state.city} </p>
         <Router>
             <nav>
               <ul className="ForecastList">
@@ -254,6 +254,7 @@ export default class App extends Component {
                     <div className="DailyCard">
                       <Link to={{
                             pathname: "/Day0",
+                            weekday: this.state.day0Forecast.weekday,
                             hourlyForecast: this.state.day0Forecast.hourlyForecast }}>
                         <img className="forecastImg" src={this.state.day0Img} />
                       </Link>

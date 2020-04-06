@@ -2,6 +2,21 @@ li {
     display: inline;
 }
 
+.cityNameTxt {
+    margin-left: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: lightslategray;
+border: solid lime;
+}
+
+.hourlyDataBox {
+    font-size: 14px;
+    color: lightslategray;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
 .ForecastList {
     display: flex;
     flex-direction: row;
@@ -22,6 +37,7 @@ border: solid red;
 
     .dailyInfoTxt {
         width: 100%;
+        color: grey;
         font-size: 12px;
         font-weight: bold;
 border: solid blue;
