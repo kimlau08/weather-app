@@ -70,6 +70,8 @@ export default class App extends Component {
     let currentDayIdx=0;
     let forecastByDays=[];
     let dailyForecast=[]; //array of objects containing day name, main forecast, temp min and temp max
+    let tempMax=0;
+    let tempMin=1000;
     for (let i=0; i<forecastData.length; i++) {
 
 
@@ -77,9 +79,9 @@ export default class App extends Component {
       let day=dt.split(' ')[0];  //get the day portion of day-time
 
       let dayOfWk=this.getDayOfWeek(dt);
-      let mainForecast=forecastData[i].weather.main;
-      let tempMax=forecastData[i].main.temp_max;
-      let tempMin=forecastData[i].main.temp_min;
+      let mainForecast=forecastData[i].weather[0].main;
+      tempMax = (tempMax < forecastData[i].main.temp_max) ? forecastData[i].main.temp_max : tempMax;
+      tempMin = (tempMin > forecastData[i].main.temp_max) ? forecastData[i].main.temp_min : tempMin;
 
       if (currentDay === "") {
         //start the first day
@@ -112,7 +114,7 @@ export default class App extends Component {
         hiTemp: tempMax,
         loTemp: tempMin,
 
-
+        hourlyForecast: forecastByDays[currentDayIdx]
       }
       dailyForecast.push(currentDayForecast);
 
@@ -123,8 +125,6 @@ export default class App extends Component {
 
 
   axiosGetWeatherData () {
-
- 
     let apiKey=config.OPEN_WEATHER_MAP_KEY;
     axios.get("http://api.openweathermap.org/data/2.5/forecast?q=Dallas,us&APPID="+apiKey)
     .then (response=> {
