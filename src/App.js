@@ -40,13 +40,9 @@ export default class App extends Component {
       day2Img: "",
       day3Img: "",
       day4Img: "",
-      day5Img: "",
-
-
-      axiosItems: []
+      day5Img: ""
     }
 
-    this.axiosGet=this.axiosGet.bind(this);
     this.axiosGetWeatherData=this.axiosGetWeatherData.bind(this);
 
     this.sortForecastByDate=this.sortForecastByDate.bind(this);
@@ -215,20 +211,6 @@ export default class App extends Component {
     })
   }
 
-  axiosGet() {
-    axios.get("https://api.spoonacular.com/recipes/search?query=cheese&number=4&apiKey=27a02bbb5b48401f96bfda6a7d3e2545")
-    .then (response=> {
-      const responseData=response.data;
-      console.log('Weather data: ', responseData);
-
-      this.setState({axiosItems: responseData});
-      this.setState({city: responseData.city.name});
-    })
-    .catch(error=>{
-      console.log('Error occurred', error)
-    })
-  }
-
   componentDidMount() {
 
     this.axiosGetWeatherData();
@@ -354,11 +336,6 @@ export default class App extends Component {
               <Route exact path="/Day5" component={Day5} />
             </Switch>
         </Router>
-
-        <ul>
-            { this.state.axiosItems.map( (data, id)=><li key={id}> {data.title} </li> )}
-        </ul>
-
       </div>
     )
   }
