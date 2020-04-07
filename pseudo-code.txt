@@ -31,7 +31,11 @@ App render the following:
 	nav bar 
 		forecast images for day0, day1, day2, day3, day4, day5.
 			the images are embedded in the react links to the above dayX components
-			react links invoke the above dayX components.
+			react links invoke the above dayX components. The following props are provided:
+				day of week
+				object containing forecast data received from OWM
 			
-		daily forecast data is rendered for each day
-	
+		daily forecast data is rendered for each day:
+			hi temp
+			lo temp
+
