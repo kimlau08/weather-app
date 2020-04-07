@@ -39,3 +39,10 @@ App render the following:
 			hi temp
 			lo temp
 
+
+Day0, Day1, Day2, Day3, Day4, Day5 components does the following:
+	extract hourly hi/lo temp forecast embedded in object sent by OWM
+	render:
+		a list of time(hour), hi temp and lo temp
+		
+	
