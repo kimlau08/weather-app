@@ -19,8 +19,6 @@ import snowyImg from './assets/snowy.PNG';
 
 import config from './config/config';
 
-//import sample5DayForecast, {sampleNowCast} from './components/sampleForecast';
-
 export default class App extends Component {
   constructor(props) {
     super(props);
