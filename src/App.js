@@ -78,7 +78,6 @@ export default class App extends Component {
   sortForecastByDate() {    
 
     //Get ISO date for next 7 days
-    let today=this.getDateFromISODate(new Date().toISOString());  //currrent date-time, delimited by 'T'
     
     //Add hourly data to each forecast day
     let forecastData=this.state.fiveDayForecastData.list; //only get the array of forecast data
