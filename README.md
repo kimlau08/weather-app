@@ -11,6 +11,7 @@
 ### Features: 
 #### Weather data is obtained from Open Weather Map
 #### Axios is used to implement AJAX query
+#### React Router is used to link to 6 components. Each day component renders the hourly data for that day
 #####    5 Day/3 Hour data is requested from OWM service on-demand using Axios
 #####    
 #####    Data for city of Dallas is used
