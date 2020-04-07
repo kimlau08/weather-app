@@ -214,7 +214,6 @@ export default class App extends Component {
   componentDidMount() {
 
     this.axiosGetWeatherData();
-      // this.axiosGet();
 
   }
 
