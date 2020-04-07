@@ -1,0 +1,37 @@
+
+React Components:
+	App (class component)
+	Day0 (function)
+	Day1 (function)
+	Day2 (function)
+	Day3 (function)
+	Day4 (function)
+	Day5 (function) /*Day5 is filled only when Open Weather Map provides the day*/
+
+App state
+	city of which forecast data is obtained
+	5 day forecast data from OWM
+	hour data sorted by days 
+	day0 forecast data day0 is the earlist date among data from OWM
+	day1 forecast data
+	day2 forecast data
+	day3 forecast data
+	day4 forecast data
+	day5 forecast data
+	day0 forecast image (image representing the forest for day0)
+	day1 forecast image
+	day2 forecast image
+	day3 forecast image
+	day4 forecast image
+	day5 forecast image
+
+
+App render the following:
+	city name
+	nav bar 
+		forecast images for day0, day1, day2, day3, day4, day5.
+			the images are embedded in the react links to the above dayX components
+			react links invoke the above dayX components.
+			
+		daily forecast data is rendered for each day
+	
