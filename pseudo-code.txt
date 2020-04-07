@@ -25,6 +25,12 @@ App state
 	day4 forecast image
 	day5 forecast image
 
+ComponentDidMount does the following:
+	send Axios query 
+	receive data
+	sort data by forecast days.
+		all forecast snapshots for a single day are grouped in a single array.
+		there 5 to 6 such arrays. They form a 2D array which serves a mini forecast database.
 
 App render the following:
 	city name
