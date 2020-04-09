@@ -16,6 +16,7 @@ import cloudyImg from './assets/cloudy.PNG';
 import rainyImg from './assets/rainy.PNG';
 import sunnyImg from './assets/sunny.PNG';
 import snowyImg from './assets/snowy.PNG';
+import clearImg from './assets/sunny.PNG';
 
 import config from './config/config';
 
@@ -72,6 +73,8 @@ export default class App extends Component {
       return sunnyImg;
     } else if (mf.match("snow")) {
       return snowyImg;
+    } else if (mf.match("clear")) {
+      return clearImg;
     }
   }
 

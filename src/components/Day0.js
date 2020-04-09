@@ -1,34 +1,37 @@
 import React from 'react';
 import '../App.css';
 
-export default function Day0(props) {
+export default function WineForm(props) {
+    return (
+        <div ></div>
+    )
 
-    if (props.location.weekday == undefined) {
-        return <div></div>
-    }
-    let weekday=props.location.weekday;
-    let hourlyForecast=props.location.hourlyForecast;
+    // if (props.location.weekday == undefined) {
+    //     return <div></div>
+    // }
+    // let weekday=props.location.weekday;
+    // let hourlyForecast=props.location.hourlyForecast;
 
     //get the list of hourly forecast for the records
-    let forecastList=[];
-    for (let i=0; i<hourlyForecast.length; i++) {
-        let hr=hourlyForecast[i].dt_txt.split(' ')[1];
-        let hiTemp=hourlyForecast[i].main.temp_max;
-        let loTemp=hourlyForecast[i].main.temp_min;
-        let forecast={
-            hr: hr,
-            hiTemp: hiTemp,
-            loTemp: loTemp
-        }
-        forecastList.push(forecast);
-    }
+    // let forecastList=[];
+    // for (let i=0; i<hourlyForecast.length; i++) {
+    //     let hr=hourlyForecast[i].dt_txt.split(' ')[1];
+    //     let hiTemp=hourlyForecast[i].main.temp_max;
+    //     let loTemp=hourlyForecast[i].main.temp_min;
+    //     let forecast={
+    //         hr: hr,
+    //         hiTemp: hiTemp,
+    //         loTemp: loTemp
+    //     }
+    //     forecastList.push(forecast);
+    // }
 
-    return (
-        <div className="hourlyDataBox"> 
-            <p>Hourly forcast for {weekday} </p>
-            <ul>
-                { forecastList.map( (forecast, id)=><li key={id}> Time: {forecast.hr} Hi: {forecast.hiTemp} Lo: {forecast.loTemp} <br /></li>  )}
-            </ul>
-        </div>
-    )
+    // return (
+    //     <div className="hourlyDataBox"> 
+    //         <p>Hourly forcast for {weekday} </p>
+    //         <ul>
+    //             { forecastList.map( (forecast, id)=><li key={id}> Time: {forecast.hr} Hi: {forecast.hiTemp} Lo: {forecast.loTemp} <br /></li>  )}
+    //         </ul>
+    //     </div>
+    // )
 }
